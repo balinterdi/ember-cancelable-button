@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "description": "A button with a built-in cancel feature",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "button"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Balint Erdi",
   "directories": {
     "doc": "doc",
     "test": "tests"
