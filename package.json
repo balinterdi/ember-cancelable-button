@@ -1,6 +1,6 @@
 {
   "name": "ember-cancelable-button",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A button with a built-in cancel feature",
   "keywords": [
     "ember-addon"
