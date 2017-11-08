@@ -1,4 +1,7 @@
-.congrats-blurb {
+.container {
+  width: 600px;
+  margin: 20px auto;
   font-size: 1.2em;
   color: dimgrey;
 }
+

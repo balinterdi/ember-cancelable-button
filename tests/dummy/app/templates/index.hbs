@@ -1,0 +1,12 @@
+<div class="example">
+  <p class="talk-abstract">
+    I'd like to talk about better ways to cancel an action before it's made.
+  </p>
+  {{#cancelable-button action=(action 'submitProposal') delay=2000}}
+    Submit proposal to EmberConf
+  {{/cancelable-button}}
+
+  {{#if proposalSubmitted}}
+    <p class="congrats-blurb">Congratulations! You submitted a proposal to EmberConf.</p>
+  {{/if}}
+</div>

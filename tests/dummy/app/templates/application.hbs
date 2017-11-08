@@ -1,8 +1,3 @@
-{{#cancelable-button action=(action 'submitProposal') delay=2000}}
-  Submit proposal to EmberConf
-{{/cancelable-button}}
-
-{{#if proposalSubmitted}}
-  <p class="congrats-blurb">Congratulations! You submitted a proposal to EmberConf.</p>
-{{/if}}
-
+<div class="container">
+  {{outlet}}
+</div>
