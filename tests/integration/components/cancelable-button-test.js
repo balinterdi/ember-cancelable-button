@@ -30,6 +30,32 @@ test("It calls the action upon timeout - if the action wasn't canceled", functio
   }, 200);
 });
 
+test("It shows a different button text when the action is scheduled", function(assert) {
+  assert.expect(2);
+
+  this.on('doNothing', () => {});
+
+  this.render(hbs`
+    {{#cancelable-button action=(action 'doNothing') delay=100 as |isSending|}}
+      {{#if isSending}}
+        Doing nothing...
+      {{else}}
+        Do nothing
+      {{/if}}
+    {{/cancelable-button}}
+  `);
+
+  this.$('.action-button').click();
+
+  assert.equal(this.$('.action-button').text().trim(), 'Doing nothing...');
+
+  let done = assert.async();
+  later(() => {
+    assert.equal(this.$('.action-button').text().trim(), 'Do nothing');
+    done();
+  }, 200);
+});
+
 test("It doesn't call the action if it's canceled within the timeout", function(assert) {
   assert.expect(1);
 

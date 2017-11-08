@@ -22,10 +22,25 @@ You have to provide the action to take and the delay after which it's taken:
 
 `delay` should be given in milliseconds.
 
+The component yields out whether an action is scheduled to be sent. You can, for
+example, use that to modify the button's text:
+
+```hbs
+{{#cancelable-button action=(action 'submitProposal') delay=2000 as |isSending|}}
+  {{#if isSending}}
+    Submitting...
+  {{else}}
+    Submit proposal to EmberConf
+  {{/if}}
+{{/cancelable-button}}
+```
+
+
 ## Example app
 
 Please take a look at the dummy app contained within this repo to see it working
-in action:
+in action. You can check it out at
+https://balinterdi.github.io/ember-cancelable-button/ or run it locally:
 
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
