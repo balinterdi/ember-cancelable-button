@@ -83,3 +83,32 @@ test("It doesn't call the action if it's canceled within the timeout", function(
     done();
   }, 1100);
 });
+
+test("It doesn't call the action (or throw error) if it's unrendered within the delay", function(assert) {
+  assert.expect(1);
+
+  let done = assert.async();
+
+  let proposalSubmitted = false;
+  this.on('submitProposal', function() {
+    proposalSubmitted = true;
+  });
+
+  this.set('cool', true);
+
+  this.render(hbs`
+    {{#if cool}}
+      {{#cancelable-button action=(action 'submitProposal') delay=1000}}
+        Submit proposal
+      {{/cancelable-button}}
+    {{/if}}
+  `);
+
+  this.$('.action-button').click();
+  this.set('cool', false);
+
+  later(() => {
+    assert.notOk(proposalSubmitted, 'Action wasn\'t called');
+    done();
+  }, 1050);
+});
