@@ -31,7 +31,7 @@ test("It calls the action upon timeout - if the action wasn't canceled", functio
 });
 
 test("It shows a different button text when the action is scheduled", function(assert) {
-  assert.expect(2);
+  assert.expect(4);
 
   this.on('doNothing', () => {});
 
@@ -45,8 +45,11 @@ test("It shows a different button text when the action is scheduled", function(a
     {{/cancelable-button}}
   `);
 
+  assert.equal(this.$('.cancel-button').length, 0, 'The cancel button doesn\'t show when no action is scheduled');
+
   this.$('.action-button').click();
 
+  assert.equal(this.$('.cancel-button').length, 1, 'The cancel button shows when the action is about to be sent');
   assert.equal(this.$('.action-button').text().trim(), 'Doing nothing...');
 
   let done = assert.async();
