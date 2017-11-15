@@ -1,0 +1,7 @@
+{{#cancelable-button action=(action 'submitProposal') as |isSending sendingIn|}}
+  {{#if isSending}}
+    Submitting in {{sendingIn}}...
+  {{else}}
+    Submit proposal to EmberConf
+  {{/if}}
+{{/cancelable-button}}

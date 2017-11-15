@@ -9,25 +9,23 @@ moduleForComponent('cancelable-button', 'Integration | Component | cancelable bu
 test("It calls the action upon timeout - if the action wasn't canceled", function(assert) {
   assert.expect(1);
 
-  let done = assert.async();
-
   let proposalSubmitted = false;
   this.on('submitProposal', function() {
     proposalSubmitted = true;
   });
 
   this.render(hbs`
-    {{#cancelable-button action=(action 'submitProposal') delay=100}}
+    {{#cancelable-button action=(action 'submitProposal') delay=2000}}
       Submit proposal
     {{/cancelable-button}}
   `);
   this.$('.action-button').click();
 
-
+  let done = assert.async();
   later(() => {
     assert.ok(proposalSubmitted, 'Action was called');
     done();
-  }, 200);
+  }, 2100);
 });
 
 test("It shows a different button text when the action is scheduled", function(assert) {
@@ -36,7 +34,7 @@ test("It shows a different button text when the action is scheduled", function(a
   this.on('doNothing', () => {});
 
   this.render(hbs`
-    {{#cancelable-button action=(action 'doNothing') delay=100 as |isSending|}}
+    {{#cancelable-button action=(action 'doNothing') delay=1000 as |isSending|}}
       {{#if isSending}}
         Doing nothing...
       {{else}}
@@ -56,7 +54,7 @@ test("It shows a different button text when the action is scheduled", function(a
   later(() => {
     assert.equal(this.$('.action-button').text().trim(), 'Do nothing');
     done();
-  }, 200);
+  }, 1100);
 });
 
 test("It doesn't call the action if it's canceled within the timeout", function(assert) {
@@ -70,7 +68,7 @@ test("It doesn't call the action if it's canceled within the timeout", function(
   });
 
   this.render(hbs`
-    {{#cancelable-button action=(action 'submitProposal') delay=200}}
+    {{#cancelable-button action=(action 'submitProposal') delay=1000}}
       Submit proposal
     {{/cancelable-button}}
   `);
@@ -83,5 +81,5 @@ test("It doesn't call the action if it's canceled within the timeout", function(
   later(() => {
     assert.notOk(proposalSubmitted, 'Action wasn\'t called');
     done();
-  }, 250);
+  }, 1100);
 });

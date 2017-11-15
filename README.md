@@ -57,8 +57,12 @@ https://balinterdi.github.io/ember-cancelable-button/ or run it locally:
 
 ## Coming features/improvements (so these don't work yet)
 
+* ~~Only show the X when the action is about to be taken (isSending)~~
+* ~~Have a default delay of 5 seconds~~
+* ~~Also yield the time left so that the button can be customized to display it ("Sending in 3, 2, 1... ")~~
 * Pass an old-style (non-closure) action as the `action`
 * Better customization of the button style (pruning down the provided styles)
-* Allow using it with ember-concurrency if it's already a dependency of the
-  project
+* Allow using it with ember-concurrency if it's already a dependency of the project
+* Have a non-block form where the text when the button is about to send is the gerundive form of the verb: "Send proposal" => "Sending in 3, 2, 1"
+* Also yield a value that is true right after the action is taken so that it can be used for feedback: "Sent."
 

@@ -1,9 +1,9 @@
 <div class="example">
-	<h3>Simple usage</h3>
-  {{code-snippet name="index.hbs"}}
-  {{#cancelable-button action=(action 'submitProposal') delay=2000 as |isSending|}}
+  <h3>Send with default delay (5 seconds)</h3>
+  {{code-snippet name="send-with-default-delay.hbs"}}
+  {{#cancelable-button action=(action 'submitProposal') as |isSending sendingIn|}}
     {{#if isSending}}
-      Submitting...
+      Submitting in {{sendingIn}}...
     {{else}}
       Submit proposal to EmberConf
     {{/if}}
@@ -12,5 +12,20 @@
   {{#if proposalSubmitted}}
     <p class="congrats-blurb">Congratulations! You submitted a proposal to EmberConf.</p>
   {{/if}}
+</div>
 
+<div class="example">
+  <h3>Send with custom delay</h3>
+  {{code-snippet name="send-with-custom-delay.hbs"}}
+  {{#cancelable-button delay=3000 action=(action 'buyBook') as |isSending sendingIn|}}
+    {{#if isSending}}
+      Buying in {{sendingIn}}...
+    {{else}}
+      Buy Rock & Roll with Ember.js
+    {{/if}}
+  {{/cancelable-button}}
+
+  {{#if bookBought}}
+    <p class="congrats-blurb">Great choice! You can now go ahead and start learning Ember.js.</p>
+  {{/if}}
 </div>

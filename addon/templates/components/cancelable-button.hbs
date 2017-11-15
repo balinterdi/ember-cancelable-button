@@ -1,7 +1,7 @@
 <button class="button action-button {{if scheduledToSend 'disabled'}}"
     disabled={{scheduledToSend}}
     onclick={{action 'sendWithDelay'}}>
-  {{yield scheduledToSend}}
+  {{yield scheduledToSend sendingInSeconds}}
 </button>
 {{#if scheduledToSend}}
   <button class="button cancel-button {{if canSend 'disabled'}}"

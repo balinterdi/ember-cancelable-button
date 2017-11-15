@@ -1,0 +1,7 @@
+{{#cancelable-button delay=3000 action=(action 'buyBook') as |isSending sendingIn|}}
+  {{#if isSending}}
+    Buying in {{sendingIn}}...
+  {{else}}
+    Buy Rock & Roll with Ember.js
+  {{/if}}
+{{/cancelable-button}}
