@@ -1261,9 +1261,9 @@ broccoli-flatiron@^0.0.0:
     mkdirp "^0.3.5"
     rsvp "~3.0.6"
 
-"broccoli-flatiron@https://github.com/balinterdi/broccoli-flatiron.git#fix-reading-from-symlinks":
-  version "0.1.1"
-  resolved "https://github.com/balinterdi/broccoli-flatiron.git#3dda07f04848a41fa0d3f8545be597c481d2e148"
+broccoli-flatiron@~0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/broccoli-flatiron/-/broccoli-flatiron-0.1.2.tgz#088cf6f03cee71721a925df9bb12cabf07e6b65c"
   dependencies:
     broccoli-kitchen-sink-helpers "~0.2.4"
     broccoli-writer "~0.1.1"
