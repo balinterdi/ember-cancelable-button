@@ -28,10 +28,12 @@ export default Component.extend({
 
   willDestroyElement() {
     this._super(...arguments);
-    cancel(this.get('timer'));
+    this._cancelTimer();
   },
 
   _countdownToSend() {
+    this._cancelTimer();
+
     let timerDecrement = 1000;
     let sendingIn = this.get('sendingIn');
     if (sendingIn === 0) {
@@ -46,6 +48,13 @@ export default Component.extend({
     this.set('timer', timer);
   },
 
+  _cancelTimer() {
+    let timer = this.get('timer');
+    if (timer) {
+      cancel(timer);
+    }
+  },
+
   actions: {
     sendWithDelay() {
       this.set('scheduledToSend', true);
@@ -55,11 +64,8 @@ export default Component.extend({
     },
 
     cancel() {
-      let timer = this.get('timer');
-      if (timer) {
-        this.set('scheduledToSend', false);
-        cancel(timer);
-      }
+      this.set('scheduledToSend', false);
+      this._cancelTimer();
     }
   }
 });
