@@ -23,15 +23,17 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     let delay = this.get('delay');
-    assert("If given, `delay` should be a value in milliseconds, divisible by 1000", !delay || delay % 1000 === 0);
+    assert("If given, `delay` should be an integer", !delay || Number.isInteger(delay));
   },
 
   willDestroyElement() {
     this._super(...arguments);
-    cancel(this.get('timer'));
+    this._cancelTimer();
   },
 
   _countdownToSend() {
+    this._cancelTimer();
+
     let timerDecrement = 1000;
     let sendingIn = this.get('sendingIn');
     if (sendingIn === 0) {
@@ -46,19 +48,24 @@ export default Component.extend({
     this.set('timer', timer);
   },
 
+  _cancelTimer() {
+    let timer = this.get('timer');
+    if (timer) {
+      cancel(timer);
+    }
+  },
+
   actions: {
     sendWithDelay() {
       this.set('scheduledToSend', true);
-      this.set('sendingIn', this.get('delay') || 5000);
+      let delay = this.get('delay');
+      this.set('sendingIn', delay ? (delay * 1000) : 5000);
       this._countdownToSend();
     },
 
     cancel() {
-      let timer = this.get('timer');
-      if (timer) {
-        this.set('scheduledToSend', false);
-        cancel(timer);
-      }
+      this.set('scheduledToSend', false);
+      this._cancelTimer();
     }
   }
 });
