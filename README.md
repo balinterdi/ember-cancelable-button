@@ -46,6 +46,7 @@ You can, for example, use that to modify the button's text:
 By default, the action is sent in 5 seconds, but a custom `delay` can be passed
 in for the number of seconds (only an integer value will be accepted).
 
+```hbs
 {{#cancelable-button action=(action 'buyBook') delay=2 as |isSending sendingIn|}}
   {{#if isSending}}
     Buying in {{sendingIn}}...
@@ -53,6 +54,7 @@ in for the number of seconds (only an integer value will be accepted).
     Buy Rock & Roll with Ember.js
   {{/if}}
 {{/cancelable-button}}
+```
 
 ## Running Tests
 
