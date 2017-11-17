@@ -15,7 +15,7 @@ test("It calls the action upon timeout - if the action wasn't canceled", functio
   });
 
   this.render(hbs`
-    {{#cancelable-button action=(action 'submitProposal') delay=2000}}
+    {{#cancelable-button action=(action 'submitProposal') delay=2}}
       Submit proposal
     {{/cancelable-button}}
   `);
@@ -34,7 +34,7 @@ test("It shows a different button text when the action is scheduled", function(a
   this.on('doNothing', () => {});
 
   this.render(hbs`
-    {{#cancelable-button action=(action 'doNothing') delay=1000 as |isSending|}}
+    {{#cancelable-button action=(action 'doNothing') delay=1 as |isSending|}}
       {{#if isSending}}
         Doing nothing...
       {{else}}
@@ -68,7 +68,7 @@ test("It doesn't call the action if it's canceled within the timeout", function(
   });
 
   this.render(hbs`
-    {{#cancelable-button action=(action 'submitProposal') delay=1000}}
+    {{#cancelable-button action=(action 'submitProposal') delay=1}}
       Submit proposal
     {{/cancelable-button}}
   `);
@@ -76,10 +76,24 @@ test("It doesn't call the action if it's canceled within the timeout", function(
   this.$('.action-button').click();
   later(() => {
     this.$('.cancel-button').click();
-  }, 100);
+  }, 500);
 
   later(() => {
     assert.notOk(proposalSubmitted, 'Action wasn\'t called');
     done();
   }, 1100);
+});
+
+test("It throws an error if delay is not an integer", function(assert) {
+  assert.expect(1);
+
+  this.on('submitProposal', () => {});
+
+  assert.expectAssertion(() => {
+    this.render(hbs`
+      {{#cancelable-button action=(action 'submitProposal') delay=1.5}}
+        Submit proposal
+      {{/cancelable-button}}
+    `);
+  }, "`delay` should be an integer");
 });

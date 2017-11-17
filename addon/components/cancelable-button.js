@@ -23,7 +23,7 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
     let delay = this.get('delay');
-    assert("If given, `delay` should be a value in milliseconds, divisible by 1000", !delay || delay % 1000 === 0);
+    assert("If given, `delay` should be an integer", !delay || Number.isInteger(delay));
   },
 
   willDestroyElement() {
@@ -49,7 +49,8 @@ export default Component.extend({
   actions: {
     sendWithDelay() {
       this.set('scheduledToSend', true);
-      this.set('sendingIn', this.get('delay') || 5000);
+      let delay = this.get('delay');
+      this.set('sendingIn', delay ? (delay * 1000) : 5000);
       this._countdownToSend();
     },
 

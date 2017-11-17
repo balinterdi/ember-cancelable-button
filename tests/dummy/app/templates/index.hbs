@@ -15,9 +15,17 @@
 </div>
 
 <div class="example">
+  <h3>Send with default delay, no customization of button text</h3>
+  {{code-snippet name="no-button-text-customization.hbs"}}
+  {{#cancelable-button action=(action 'orderGroceries')}}
+    Order groceries
+  {{/cancelable-button}}
+</div>
+
+<div class="example">
   <h3>Send with custom delay</h3>
   {{code-snippet name="send-with-custom-delay.hbs"}}
-  {{#cancelable-button delay=3000 action=(action 'buyBook') as |isSending sendingIn|}}
+  {{#cancelable-button delay=2 action=(action 'buyBook') as |isSending sendingIn|}}
     {{#if isSending}}
       Buying in {{sendingIn}}...
     {{else}}

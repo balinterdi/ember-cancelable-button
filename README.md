@@ -10,40 +10,49 @@ within the given timeout by clicking on the "cancel" part of the button.
 * `cd ember-cancelable-button`
 * `yarn install`
 
+## Demo site
+
+Check out examples at https://balinterdi.github.io/ember-cancelable-button.
+
 ## Usage
 
-You have to provide the action to take and the delay after which it's taken:
+At a minimum, the action to take should be passed in:
 
 ```hbs
-{{#cancelable-button action=(action 'submitProposal') delay=2000}}
+{{#cancelable-button action=(action 'submitProposal')}}
   Submit proposal to EmberConf
 {{/cancelable-button}}
 ```
 
-`delay` should be given in milliseconds.
+### Customizing the button text
 
-The component yields out whether an action is scheduled to be sent. You can, for
-example, use that to modify the button's text:
+The component yields out whether the action is scheduled to be sent and the
+number of seconds it will be sent in.
+
+You can, for example, use that to modify the button's text:
 
 ```hbs
-{{#cancelable-button action=(action 'submitProposal') delay=2000 as |isSending|}}
+{{#cancelable-button action=(action 'submitProposal') as |isSending sendingIn|}}
   {{#if isSending}}
-    Submitting...
+    Submitting in {{sendingIn}}...
   {{else}}
     Submit proposal to EmberConf
   {{/if}}
 {{/cancelable-button}}
 ```
 
+### Custom delay
 
-## Example app
+By default, the action is sent in 5 seconds, but a custom `delay` can be passed
+in for the number of seconds (only an integer value will be accepted).
 
-Please take a look at the dummy app contained within this repo to see it working
-in action. You can check it out at
-https://balinterdi.github.io/ember-cancelable-button/ or run it locally:
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+{{#cancelable-button action=(action 'buyBook') delay=2 as |isSending sendingIn|}}
+  {{#if isSending}}
+    Buying in {{sendingIn}}...
+  {{else}}
+    Buy Rock & Roll with Ember.js
+  {{/if}}
+{{/cancelable-button}}
 
 ## Running Tests
 
@@ -60,6 +69,12 @@ https://balinterdi.github.io/ember-cancelable-button/ or run it locally:
 * ~~Only show the X when the action is about to be taken (isSending)~~
 * ~~Have a default delay of 5 seconds~~
 * ~~Also yield the time left so that the button can be customized to display it ("Sending in 3, 2, 1... ")~~
+* ~~Guard against passing in non-integer values for `delay`~~
+* While the cancel part is not shown, have rounded corners on the right side, too.
+* Allow customization of where the cancel part is shown (Gumroad puts it on the left, for example)
+* Let the button know when the action is being carried out (so there should
+  be 3 states: start (same as canceled), scheduled-to-send, and sending. Maybe even a fourth one, which is `sent`.
+  So a button could go even show "Submitted" (or "Bought") after the action has been carried out.
 * Pass an old-style (non-closure) action as the `action`
 * Better customization of the button style (pruning down the provided styles)
 * Allow using it with ember-concurrency if it's already a dependency of the project
