@@ -24,6 +24,10 @@ export default Component.extend({
     this._super(...arguments);
     let delay = this.get('delay');
     assert("If given, `delay` should be an integer", !delay || Number.isInteger(delay));
+    if (delay && delay < 3) {
+      // eslint-disable-next-line no-console
+      console.warn(`You provided a delay of ${delay} seconds, which might be too little time for the user to cancel.`);
+    }
   },
 
   willDestroyElement() {
