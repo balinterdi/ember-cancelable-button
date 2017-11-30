@@ -72,8 +72,7 @@ in for the number of seconds (only an integer value will be accepted).
 * ~~Have a default delay of 5 seconds~~
 * ~~Also yield the time left so that the button can be customized to display it ("Sending in 3, 2, 1... ")~~
 * ~~Guard against passing in non-integer values for `delay`~~
-* While the cancel part is not shown, have rounded corners on the right side, too.
-* Allow customization of where the cancel part is shown (Gumroad puts it on the left, for example)
+* ~~While the cancel part is not shown, have rounded corners on the right side, too.~~
 * Let the button know when the action is being carried out (so there should
   be 3 states: start (same as canceled), scheduled-to-send, and sending. Maybe even a fourth one, which is `sent`.
   So a button could go even show "Submitted" (or "Bought") after the action has been carried out.
@@ -82,4 +81,5 @@ in for the number of seconds (only an integer value will be accepted).
 * Allow using it with ember-concurrency if it's already a dependency of the project
 * Have a non-block form where the text when the button is about to send is the gerundive form of the verb: "Send proposal" => "Sending in 3, 2, 1"
 * Also yield a value that is true right after the action is taken so that it can be used for feedback: "Sent."
+* Allow customization of where the cancel part is shown (Gumroad puts it on the left, for example)
 
