@@ -1,6 +1,6 @@
 {
   "name": "ember-cancelable-button",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A button with a built-in cancel feature",
   "keywords": [
     "ember-addon",
@@ -12,7 +12,7 @@
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/balinterdi/ember-cancelable-button",
   "scripts": {
     "build": "ember build",
     "start": "ember server",

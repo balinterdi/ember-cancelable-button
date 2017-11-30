@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## v0.2.1
+
+- [FEATURE delay-warning] Warn if given warning is < 3 seconds
+
 ## 0.2.0
 
 - [FEATURE hide-cancel-if-not-scheduled] Only show cancel part of the button when action is scheduled
